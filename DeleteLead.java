@@ -1,13 +1,15 @@
 package week2.day2;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DeleteLead {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		//Launch the browser
 		ChromeDriver obj = new ChromeDriver();
@@ -24,27 +26,36 @@ public class DeleteLead {
 		obj.findElement(By.linkText("Leads")).click();
 		//click find leads
 		obj.findElement(By.linkText("Find Leads")).click();
-		//enter phone number 
-		obj.findElement(By.className("phoneNumber")).sendKeys("55");
+		//Click Phone tab to find lead based on phone number
+		obj.findElement(By.xpath("//span[text()='Phone']")).click();
+		//Input phone number to find lead
+		obj.findElement(By.xpath("//input[@id='ext-gen270']")).sendKeys("55");
+		Thread.sleep(2000);
 		//click find leads
 		obj.findElement(By.xpath("//button[contains(text(),'Find Leads')]")).click();
-		
-		//capture the lead id 
-		
-		//click first record as part of search
-		obj.findElement(By.linkText("13304")).click();
+//		
+//		//capture the lead id 
+//		
+		Thread.sleep(3000);
+//		//click first record as part of search
+		obj.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a")).click();
 		System.out.println(obj.getTitle());
 		
-		//Click delete record
+		
+//		//Click delete record
 		obj.findElement(By.linkText("Delete")).click();
-		//click again find leads
+//		//click again find leads
 		obj.findElement(By.linkText("Find Leads")).click();
-		//enter lead id
-		obj.findElement(By.name("id")).sendKeys("13304");
-		//click find leads
+		
+		Thread.sleep(1000);
+//		//enter lead id
+		obj.findElement(By.xpath("//input[@id='ext-gen246']")).sendKeys("13402");
+//		//click find leads
 		obj.findElement(By.xpath("//button[contains(text(),'Find Leads')]")).click();
 		
 		//Verify "No records to display" in the Lead List
+		WebElement ss = obj.findElement(By.xpath("//div[@id='ext-gen437']"));	
+		System.out.println(ss);
 	}
 
 }
