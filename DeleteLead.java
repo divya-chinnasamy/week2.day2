@@ -29,13 +29,15 @@ public class DeleteLead {
 		//Click Phone tab to find lead based on phone number
 		obj.findElement(By.xpath("//span[text()='Phone']")).click();
 		//Input phone number to find lead
-		obj.findElement(By.xpath("//input[@id='ext-gen270']")).sendKeys("55");
+		obj.findElement(By.xpath("//input[@id='ext-gen270']")).sendKeys("123456");
 		Thread.sleep(2000);
 		//click find leads
 		obj.findElement(By.xpath("//button[contains(text(),'Find Leads')]")).click();
 //		
 //		//capture the lead id 
-//		
+		String leadid = obj.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a")).getText();
+		System.out.println(leadid);
+		
 		Thread.sleep(3000);
 //		//click first record as part of search
 		obj.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a")).click();
@@ -54,7 +56,7 @@ public class DeleteLead {
 		obj.findElement(By.xpath("//button[contains(text(),'Find Leads')]")).click();
 		
 		//Verify "No records to display" in the Lead List
-		WebElement ss = obj.findElement(By.xpath("//div[@id='ext-gen437']"));	
+		String ss = obj.findElement(By.xpath("//div[@class='x-paging-info']")).getText();	
 		System.out.println(ss);
 	}
 
